@@ -1,0 +1,22 @@
+.doctor-list {
+    margin-top: 20px;
+}
+
+.doctor {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+.doctor h2 {
+    margin-top: 0;
+}
+
+.doctor p {
+    margin: 5px 0;
+}
+
+a{
+    color: red;
+}
