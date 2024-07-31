@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', path='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='doc.css') }}">
+    <link rel="icon" type="image/x-icon" href="static/ribbon-solid.ico">
+    <script src="https://kit.fontawesome.com/8751abb40d.js" crossorigin="anonymous"></script>
+    <title>Top Cancer Specialists in India</title>
+</head>
+<body>
+    <header>
+        <div class="header">
+            <div class="logo">
+                <a href="/"><i class="fa-solid fa-ribbon"></i> CanSure</a>
+            </div>
+            <nav>
+                <ul class="topbar">
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="container">
+        <h1>Top Cancer Specialists in India</h1>
+        <p>Here is a list of some of the most renowned cancer specialists in India. They are well-known for their expertise and have a proven track record in cancer treatment:</p>
+        
+        <div class="doctor-list">
+            <div class="doctor">
+                <h2>Dr. B. S. Ajaikumar</h2>
+                <p><strong>Specialization:</strong> Oncology</p>
+                <p><strong>Hospital:</strong> HealthCare Global Enterprises</p>
+                <p><strong>Location:</strong> Bangalore, Karnataka</p>
+                <p><strong>Contact:</strong> <a href="mailto:info@hcgoncology.com" class="email-link">info@hcgoncology.com</a></p>
+            </div>
+            <div class="doctor">
+                <h2>Dr. S. N. Jha</h2>
+                <p><strong>Specialization:</strong> Surgical Oncology</p>
+                <p><strong>Hospital:</strong> AIIMS</p>
+                <p><strong>Location:</strong> New Delhi</p>
+                <p><strong>Contact:</strong> <a href="mailto:snjha@aiims.edu" class="email-link">snjha@aiims.edu</a></p>
+            </div>
+            <div class="doctor">
+                <h2>Dr. Rajesh Mistry</h2>
+                <p><strong>Specialization:</strong> Medical Oncology</p>
+                <p><strong>Hospital:</strong> Tata Memorial Hospital</p>
+                <p><strong>Location:</strong> Mumbai, Maharashtra</p>
+                <p><strong>Contact:</strong> <a href="mailto:rajesh.mistry@tmc.gov.in" class="email-link">rajesh.mistry@tmc.gov.in</a></p>
+            </div>
+            <div class="doctor">
+                <h2>Dr. Ashok Vaid</h2>
+                <p><strong>Specialization:</strong> Hemato-Oncology</p>
+                <p><strong>Hospital:</strong> Fortis Memorial Research Institute</p>
+                <p><strong>Location:</strong> Gurgaon, Haryana</p>
+                <p><strong>Contact:</strong> <a href="mailto:ashok.vaid@fortishealthcare.com" class="email-link">ashok.vaid@fortishealthcare.com</a></p>
+            </div>
+            <div class="doctor">
+                <h2>Dr. Shyam Agarwal</h2>
+                <p><strong>Specialization:</strong> Radiation Oncology</p>
+                <p><strong>Hospital:</strong> Max Super Specialty Hospital</p>
+                <p><strong>Location:</strong> Delhi</p>
+                <p><strong>Contact:</strong> <a href="mailto:shyam.agarwal@maxhealthcare.com" class="email-link">shyam.agarwal@maxhealthcare.com</a></p>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.querySelectorAll('.email-link').forEach(function(link) {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                window.location.href = this.href;
+            });
+        });
+    </script>
+</body>
+</html>

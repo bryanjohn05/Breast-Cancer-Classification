@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', path='styles.css') }}">
+    <link rel="icon" type="image/x-icon" href="static\ribbon-solid.ico">
+    <script src="https://kit.fontawesome.com/8751abb40d.js" crossorigin="anonymous"></script>
+    <title>Breast Cancer Classification</title>
+</head>
+<body>
+    <header>
+        <div class="header">
+            <div class="logo">
+                <a href="/"><i class="fa-solid fa-ribbon"></i> CanSure</a>
+            </div>
+            <nav>
+                <ul class="topbar">
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="container">
+        <h1>Upload a Breast Cancer X-ray Image to detect if it's Malignant or Benign </h1>
+        <form id="uploadForm" action="/predict/" method="post" enctype="multipart/form-data" onsubmit="return checkImageType(event);">
+            <input type="file" id="fileInput" name="file" required>
+            <br>
+            <button type="submit">Predict</button>
+        </form>
+    </div>
+    <script>
+        function checkImageType(event) {
+            var input = document.getElementById('fileInput');
+            var file = input.files[0];
+            var img = new Image();
+            var reader = new FileReader();
+            var isGrayscale = true;  // Assume grayscale initially
+
+            reader.onloadend = function () {
+                img.src = reader.result;
+                img.onload = function () {
+                    var canvas = document.createElement('canvas');
+                    var context = canvas.getContext('2d');
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    context.drawImage(img, 0, 0);
+
+                    var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+                    var data = imageData.data;
+
+                    for (var i = 0; i < data.length; i += 4) {
+                        var r = data[i];
+                        var g = data[i + 1];
+                        var b = data[i + 2];
+                        // Check if not grayscale
+                        if (r !== g || g !== b) {
+                            isGrayscale = false;
+                            break;
+                        }
+                    }
+
+                    if (!isGrayscale) {
+                        alert('Uploaded image must be grayscale (single channel). Please choose a different image.');
+                        input.value = ''; // Clear input field
+                        window.location.href = '/'; // Redirect to homepage
+                    }
+                };
+            };
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+            return isGrayscale; // Proceed with form submission if grayscale
+        }
+    </script>
+</body>
+</html>

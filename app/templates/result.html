@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', path='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+
+    <link rel="icon" type="image/x-icon" href="static/ribbon-solid.ico">
+    <script src="https://kit.fontawesome.com/8751abb40d.js" crossorigin="anonymous"></script>
+    <title>Breast Cancer Classification Result</title>
+</head>
+<body>
+    <header>
+        <div class="header">
+            <div class="logo">
+                <a href="/"><i class="fa-solid fa-ribbon"></i> CanSure</a>
+            </div>
+            <nav>
+                <ul class="topbar">
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="container">
+        <h1>Classification Result</h1>
+        <p style="text-align:center;">The uploaded image is classified as: <strong>{{ class_label }}</strong></p>
+        <img src="{{ image_url }}" alt="Result Image" /><br>
+        <button><a href="/">Upload another image</a></button>
+        
+        <!-- Conditional display of information based on classification result -->
+        {% if class_label == 'benign' %}
+        <div class="info">
+            <h2>Benign Breast Conditions</h2>
+            <p style="font-size:22px;"><strong>Symptoms:</strong></p>
+            <ul>
+                <li>Pain, swelling, or tenderness in the breast</li>
+                <li>A lump you can feel</li>
+                <li>Skin irritation or redness</li>
+                <li>Nipple changes like pain, retraction, or unusual discharge</li>
+            </ul>
+            <p>These symptoms are often benign but should be checked to rule out breast cancer.</p>
+            <h3>Diagnosis involves:</h3>
+            <ol>
+                <li><strong>Physical Exam:</strong> A doctor will examine your breasts and ask about your symptoms and medical history.</li>
+                <li><strong>Imaging Tests:</strong> 
+                    <ul>
+                        <li><strong>Mammography:</strong> X-ray of the breast.</li>
+                        <li><strong>Ultrasound:</strong> Uses sound waves to differentiate between fluid-filled cysts and solid lumps.</li>
+                        <li><strong>MRI:</strong> Provides more detailed images if needed.</li>
+                    </ul>
+                </li>
+                <li><strong>Nipple Discharge Analysis:</strong> If you have discharge, it will be examined under a microscope.</li>
+                <li><strong>Biopsy:</strong> A sample of breast tissue is taken and examined to confirm if it's benign.</li>
+            </ol>
+            <p>Sometimes, additional imaging may be needed to monitor the condition, but most benign conditions do not increase cancer risk.</p><br><p style="color:red;text-align:center;"> It’s important to follow up with your doctor and get a second opinion if needed.</p>
+        </div>
+        {% elif class_label == 'malignant' %}
+        <div class="info">
+            <h2>Malignant Breast Conditions</h2>
+            <p style="font-size:22px;"><strong>Symptoms:</strong></p>
+            <ul>
+                <li>A noticeable lump or mass in the breast or underarm area that is hard and painless</li>
+                <li>Changes in breast size or shape</li>
+                <li>Persistent pain or discomfort in the breast</li>
+                <li>Changes in skin texture, such as dimpling or puckering</li>
+                <li>Redness or swelling of the breast</li>
+                <li>Nipple discharge that is clear or bloody</li>
+                <li>Nipple changes, such as inversion or unusual appearance</li>
+            </ul>
+            <h3>Diagnosis of malignant breast conditions involves:</h3>
+            <ol>
+                <li><strong>Physical Exam:</strong> A doctor will check your breasts for lumps or other unusual changes and review your medical history and symptoms.</li>
+                <li><strong>Imaging Tests:</strong>
+                    <ul>
+                        <li><strong>Mammography:</strong> An X-ray used to detect abnormal areas in the breast.</li>
+                        <li><strong>Ultrasound:</strong> Helps determine if a lump is solid or fluid-filled.</li>
+                        <li><strong>MRI:</strong> Provides detailed images and helps in assessing the extent of cancer.</li>
+                    </ul>
+                </li>
+                <li><strong>Nipple Discharge Analysis:</strong> If there is discharge, it will be examined for cancer cells.</li>
+                <li><strong>Biopsy:</strong> A sample of tissue is taken from the lump or area of concern and examined under a microscope to confirm cancer and determine its type and grade. Types of biopsies include:
+                    <ul>
+                        <li><strong>Core Needle Biopsy:</strong> Removes small tissue samples.</li>
+                        <li><strong>Excisional Biopsy:</strong> Removes the entire lump or area of concern.</li>
+                    </ul>
+                </li>
+                <li><strong>Additional Tests:</strong> Depending on initial findings, further tests might be needed to determine if cancer has spread (e.g., to lymph nodes or other parts of the body).</li>
+            </ol>
+            <p>Early detection and diagnosis are crucial in managing malignant breast conditions effectively.</p><br><p style="color:red; text-align:center"> Follow-up and treatment plans will be tailored to the specific type and stage of cancer, and getting a second opinion can be helpful for reassurance and clarity.</p>
+        </div>
+        {% else %}
+        <p>No classification result available. Please upload an image and try again.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
